@@ -13,25 +13,36 @@
 
 Find your AUTH token on the ngrok dashboard: https://dashboard.ngrok.com/get-started/your-authtoken
 
-`ngrok config add-authtoken YOUR-NGROK-AUTHTOKEN`
+```
+ngrok config add-authtoken YOUR-NGROK-AUTHTOKEN
+```
 
 ## Running an LLM using Ollama
 
 - **Choose your LLM from the list here:** https://ollama.com/search
-- Run `ollama run <LLM>` in your terminal, replacing `<LLM>` with your choice.
+- Run the following in your terminal, replacing `<LLM>` with your choice.
+```
+ollama run <LLM>
+```
   - Example: `ollama run deepseek-r1`
 - Run a prompt and check if you're receiving an output. Then kill all processes.
 
 ## Deploying on ngrok
 
-- Execute `ollama serve` in your terminal. This will take up port `11434`.
+- Execute the following in your terminal. This will take up port `11434`.
+```
+ollama serve
+```
 - (Optional) Test using the following:
   - ``` bash
     curl --request GET \
     --url http://localhost:11434/
     ```
     Ideal Response: `Ollama is running`
-- Run `ngrok http 11434 --host-header=localhost`.
+- Run
+```
+ngrok http 11434 --host-header=localhost
+```
 
 > [!NOTE]  
 > `--host-header=localhost` is important because Ollama requires this header.
@@ -60,9 +71,15 @@ Find your AUTH token on the ngrok dashboard: https://dashboard.ngrok.com/get-sta
 
 ## Authentication using ngrok
 
-- Create a new Traffic Policy using `nano traffic-policy.yml`.
+- Create a new Traffic Policy using 
+```
+nano traffic-policy.yml
+```
 - Copy and paste the contents from [traffic-policy.yml](traffic-policy.yml).
-- Run `ngrok http 11434 --traffic-policy-file traffic-policy.yml --host-header=localhost`.
+- Run 
+```
+ngrok http 11434 --traffic-policy-file traffic-policy.yml --host-header=localhost
+```
 - To test, execute 
 ``` bash
    curl --request GET \
